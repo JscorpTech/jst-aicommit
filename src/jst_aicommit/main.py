@@ -10,6 +10,7 @@ class JstAiCommit:
         ...
 
     def run(self):
+        """Ish tushurovchi funcsiya"""
         ai = Blackbox()
         git = Git()
         status, changes = git.diff()

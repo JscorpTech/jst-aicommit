@@ -14,6 +14,7 @@ class Blackbox:
         self.url = "https://www.blackbox.ai/api/chat"
 
     def get_commit(self, text: Union[str]) -> Union[str]:
+        """Blackboxdan commit generatsiya qilish uchun api request"""
         response = ""
         request = "Manabunga o'zbekcha git commit yozib ber iloji boricha qisqa bo'lsin ```{}```".format(text)
         for chunk in self.request(request):
