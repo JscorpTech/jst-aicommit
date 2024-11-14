@@ -1,6 +1,8 @@
 from typing import Union
 import requests
 import re
+from tenacity import retry, stop_after_attempt
+
 
 class Blackbox:
     block_texts = [
@@ -13,6 +15,7 @@ class Blackbox:
     def __init__(self) -> None:
         self.url = "https://www.blackbox.ai/api/chat"
 
+    @retry(stop=stop_after_attempt(5))
     def get_commit(self, text: Union[str]) -> Union[str]:
         """Blackboxdan commit generatsiya qilish uchun api request"""
         response = ""

@@ -17,7 +17,10 @@ class JstAiCommit:
         if not status or len(changes.strip()) == 0:
             print("[red bold] No changes to commit.[/red bold]")
             exit()
-        commit = questionary.text("commit: ", default=ai.get_commit(changes)).ask()
+        try:
+            commit = questionary.text("commit: ", default=ai.get_commit(changes)).ask()
+        except Exception as e:
+            print("[red bold]AI yordamida commit yaratishda xatolik yuz berdi[/red bold]")
         git.commit(commit)
         
 
