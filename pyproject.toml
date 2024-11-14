@@ -4,10 +4,16 @@ version = "0.1.0"
 description = ""
 authors = ["A'zamov Samandar <JscorpTech@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "jst_aicommit", from = "src"},
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"
 
+
+[tool.poetry.scripts]
+aic = 'jst_aicommit.main:main'
 
 [build-system]
 requires = ["poetry-core"]

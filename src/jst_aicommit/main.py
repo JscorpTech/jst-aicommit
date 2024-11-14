@@ -1,5 +1,5 @@
-from blackbox import Blackbox
-from git import Git
+from .blackbox import Blackbox
+from .git import Git
 import questionary
 from rich import print
 
@@ -8,7 +8,6 @@ class JstAiCommit:
 
     def __init__(self) -> None:
         ...
-    
 
     def run(self):
         ai = Blackbox()
@@ -17,9 +16,10 @@ class JstAiCommit:
         if not status or len(changes.strip()) == 0:
             print("[red bold] No changes to commit.[/red bold]")
             exit()
-        commit = questionary.text("commit: ", default=ai.get_commit()).ask()
+        commit = questionary.text("commit: ", default=ai.get_commit(changes)).ask()
         git.commit(commit)
         
 
-obj = JstAiCommit()
-obj.run()
+def main():
+    obj = JstAiCommit()
+    obj.run()
