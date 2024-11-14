@@ -46,3 +46,26 @@ def get_commit_message_from_api():
     else:
         print("API so'rovi bajarilmadi, xato!")
         return None
+
+def git_add_commit():
+    # Git statusni tekshirish
+    status = subprocess.check_output(["git", "status", "--porcelain"]).decode("utf-8")
+    if not status.strip():
+        print("Hech qanday o'zgarish topilmadi!")
+        return
+
+    # Git add bajarish
+    subprocess.run(["git", "add", "."])
+
+    # APIdan commit xabarini olish
+    commit_message = get_commit_message_from_api()
+    
+    if commit_message:
+        # Git commit bajarish
+        subprocess.run(["git", "commit", "-m", commit_message])
+        print("O'zgarishlar muvaffaqiyatli commit qilindi!")
+    else:
+        print("Commit xabari olinmadi!")
+
+if __name__ == "__main__":
+    git_add_commit()

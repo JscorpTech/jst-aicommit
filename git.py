@@ -6,13 +6,12 @@ class Git:
     def __init__(self) -> None:
         ...
     
-    def get_stash(self):
+    def diff(self):
         try:
-            output = subprocess.run(["git","stash"], capture_output=True, text=True, check=True)
-            print(output.stdout)
+            output = subprocess.run(["git","diff", "--cached", "--unified=0","--minimal"], capture_output=True, text=True, check=True)
+            return True, output.stdout
         except Exception as e:
-            print(e.stderr.strip())
-
-
-obj = Git()
-obj.get_stash()
+            return False, e.stderr
+    
+    def commit(self, text):
+        subprocess.run(['git', "commit", "-m", '"{}"'.format(text)])
