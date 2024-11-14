@@ -1,6 +1,5 @@
 from typing import Union
 import requests
-from git import Git
 import re
 
 class Blackbox:
@@ -68,7 +67,3 @@ class Blackbox:
                 continue
             yield chunk
 
-    
-obj = Blackbox()
-git = Git()
-print(obj.get_commit(git.diff()))
