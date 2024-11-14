@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jst-aicommit"
-version = "0.1.2"
+version = "0.1.4"
 description = ""
 authors = ["A'zamov Samandar <JscorpTech@gmail.com>"]
 readme = "README.md"
@@ -9,7 +9,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.9"
 tenacity = "^9.0.0"
 requests = "^2.32.3"
 questionary = "^2.0.1"
