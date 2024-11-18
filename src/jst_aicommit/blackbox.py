@@ -29,14 +29,9 @@ class Blackbox:
             response = response[:-1]
         return response
 
-    def request(self, text):        
+    def request(self, text):
         payload = {
-            "messages": [
-                {
-                    "role": "user",
-                    "content": text
-                }
-            ],
+            "messages": [{"role": "user", "content": text}],
             "previewToken": None,
             "userId": None,
             "codeModelMode": True,
@@ -54,13 +49,13 @@ class Blackbox:
             "clickedForceWebSearch": False,
             "visitFromDelta": False,
             "mobileClient": False,
-            "userSelectedModel": None
+            "userSelectedModel": None,
         }
         headers = {
             "accept": "*/*",
             "accept-language": "uz,en-US;q=0.9,en;q=0.8,ru;q=0.7",
             "content-type": "application/json",
-            "priority": "u=1, i"
+            "priority": "u=1, i",
         }
 
         response = requests.post(self.url, json=payload, headers=headers, stream=True)
@@ -70,4 +65,3 @@ class Blackbox:
             if len(chunk.strip()) == 0:
                 continue
             yield chunk
-

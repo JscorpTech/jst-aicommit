@@ -18,6 +18,9 @@ questionary = "^2.0.1"
 [tool.poetry.scripts]
 aic = 'jst_aicommit.main:main'
 
+[tool.black]
+line-length = 120
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

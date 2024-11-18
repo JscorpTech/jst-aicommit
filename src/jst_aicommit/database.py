@@ -1,6 +1,7 @@
 from typing import Union, List
 from pydal import DAL, Field
 
+
 class Database:
 
     def __init__(self) -> None:
@@ -9,8 +10,8 @@ class Database:
         self.db.define_table(
             "config",
             Field("key", "string", unique=True),  # Konfiguratsiya kaliti
-            Field("value", "string"),            # Konfiguratsiya qiymati
-            migrate=True
+            Field("value", "string"),  # Konfiguratsiya qiymati
+            migrate=True,
         )
         self.db.commit()  # O'zgarishlarni saqlash
 

@@ -6,8 +6,7 @@ from rich import print
 
 class JstAiCommit:
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
 
     def run(self):
         """Ish tushurovchi funcsiya"""
@@ -22,8 +21,9 @@ class JstAiCommit:
         except Exception as e:
             print("[red bold]AI yordamida commit yaratishda xatolik yuz berdi[/red bold]")
         git.commit(commit)
-        
+
 
 def main():
+    """Main funcsiya"""
     obj = JstAiCommit()
     obj.run()
