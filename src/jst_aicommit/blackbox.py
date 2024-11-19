@@ -2,6 +2,7 @@ from typing import Union
 import requests
 import re
 from tenacity import retry, stop_after_attempt
+from .exceptions import JstException
 
 
 class Blackbox:
@@ -22,12 +23,15 @@ class Blackbox:
         request = "Manabunga o'zbekcha git commit yozib ber iloji boricha qisqa bo'lsin ```{}```".format(text)
         for chunk in self.request(request):
             response += chunk
-        response = re.match("(.*)```(.*)```(.*)", response).groups()[1]
-        if response.startswith('"'):
-            response = response[1:]
-        if response.endswith('"'):
-            response = response[:-1]
-        return response
+        try:
+            commit = re.match("(.*)```(.*)```(.*)", response).groups()[1]
+        except Exception as e:
+            raise JstException(response, code=JstException.ERROR_MATCH)
+        if commit.startswith('"'):
+            commit = commit[1:]
+        if commit.endswith('"'):
+            commit = commit[:-1]
+        return commit
 
     def request(self, text):
         payload = {

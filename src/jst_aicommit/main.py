@@ -2,6 +2,7 @@ from .blackbox import Blackbox
 from .git import Git
 import questionary
 from rich import print
+from .exceptions import JstException
 
 
 class JstAiCommit:
@@ -17,9 +18,13 @@ class JstAiCommit:
             print("[red bold] No changes to commit.[/red bold]")
             exit()
         try:
-            commit = questionary.text("commit: ", default=ai.get_commit(changes)).ask()
-        except Exception as e:
-            print("[red bold]AI yordamida commit yaratishda xatolik yuz berdi[/red bold]")
+            ai_text = ai.get_commit(changes)
+        except JstException as e:
+            if e.code == JstException.ERROR_MATCH:
+                ai_text = e.message
+            else:
+                raise Exception("Nomalum xatolik yuz ber")
+        commit = questionary.text("commit: ", default=ai_text).ask()
         git.commit(commit)
 
 
