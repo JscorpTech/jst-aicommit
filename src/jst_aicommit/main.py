@@ -25,7 +25,8 @@ class JstAiCommit:
             else:
                 raise Exception("Nomalum xatolik yuz ber")
         commit = questionary.text("commit: ", default=ai_text).ask()
-        git.commit(commit)
+        if commit is not None:
+            git.commit(commit)
 
 
 def main():
