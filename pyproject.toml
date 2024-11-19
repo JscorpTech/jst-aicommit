@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jst-aicommit"
-version = "0.1.5"
+version = "0.1.6"
 description = ""
 authors = ["A'zamov Samandar <JscorpTech@gmail.com>"]
 readme = "README.md"
