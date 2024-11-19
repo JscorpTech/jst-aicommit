@@ -28,7 +28,6 @@ class JstAiCommit:
         if commit is not None:
             git.commit(commit)
 
-
 def main():
     """Main funcsiya"""
     obj = JstAiCommit()
