@@ -78,3 +78,4 @@ class Database:
         Sinf yo'q qilinishida ulanishni yopadi.
         """
         self.close()
+
