@@ -21,12 +21,12 @@ class AI:
     def _get_commit(self, text):
         response = re.search(r"```(.*?)```", text, re.DOTALL).group(1).strip()
         if response.startswith("bash"):
-            response = response[5:]
+            response = response[6:]
         if response.startswith("git"):
-            response = response[4:]
-        if response.strip().startswith('"'):
+            response = response[5:]
+        if response.startswith('"'):
             response = response[1:]
-        if response.strip().endswith('"'):
+        if response.endswith('"'):
             response = response[:-1]
         return response
 
