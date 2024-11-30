@@ -44,7 +44,7 @@ class AI:
                 provider=Blackbox,
                 messages=[{"role": "user", "content": request_text}],
             )
-            response = "text %s text" % self._clean_response(response.choices[0].message.content)
+            response = self._clean_response(response.choices[0].message.content)
         except Exception as e:
             logging.error(e)
             raise Exception("API request except retry")
