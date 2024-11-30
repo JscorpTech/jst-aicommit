@@ -21,4 +21,3 @@ class Git:
     def commit(self, text):
         """Commitlarni saqlash saqlash"""
         subprocess.run(["git", "commit", "-m", '{}'.format(text)])
-

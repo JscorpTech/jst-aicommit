@@ -1,4 +1,4 @@
-from .blackbox import Blackbox
+from .api import AI
 from .git import Git
 import questionary
 from rich import print
@@ -11,7 +11,7 @@ class JstAiCommit:
 
     def run(self):
         """Ish tushurovchi funcsiya"""
-        ai = Blackbox()
+        ai = AI()
         git = Git()
         status, changes = git.diff()
         if not status or len(changes.strip()) == 0:
@@ -27,6 +27,7 @@ class JstAiCommit:
         commit = questionary.text("commit: ", default=ai_text).ask()
         if commit is not None:
             git.commit(commit)
+
 
 def main():
     """Main funcsiya"""
