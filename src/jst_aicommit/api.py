@@ -2,7 +2,7 @@ from typing import Union
 from tenacity import retry, stop_after_attempt, retry_if_not_exception_type
 from .exceptions import JstException
 from g4f.client import Client
-from g4f.Provider import Blackbox
+from g4f.Provider import ChatGpt
 import re
 import logging
 
@@ -40,8 +40,8 @@ class AI:
         )
         try:
             response = self.client.chat.completions.create(
-                model="blackboxai",
-                provider=Blackbox,
+                model="gpt-o4",
+                provider=ChatGpt,
                 messages=[{"role": "user", "content": request_text}],
             )
             response = self._clean_response(response.choices[0].message.content)
